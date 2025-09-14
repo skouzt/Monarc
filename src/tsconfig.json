@@ -1,31 +1,31 @@
 {
   "compilerOptions": {
-    "target": "ESNext",                          
-    "module": "ESNext",                          
-    "moduleResolution": "Node",                  
-    "strict": true,                              
-    "jsx": "preserve",                           
-    "resolveJsonModule": true,                   
-    "esModuleInterop": true,                     
-    "allowSyntheticDefaultImports": true,        
-    "isolatedModules": true,                     
-    "skipLibCheck": true,                        
-    "useDefineForClassFields": true,             
-
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],    
-
-    "types": ["vite/client", "node"],            
-
-    "baseUrl": ".",                              
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es6",
+    "noEmit": true,
+    "noImplicitAny": false,
+    "removeComments": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es7",
+      "es2017.object"
+    ],
+    "typeRoots": [
+      "../node_modules/@types",
+      "./typings"
+    ]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue"
-  ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "../node_modules"
+  ]
 }

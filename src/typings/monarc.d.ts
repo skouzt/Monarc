@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/member-delimiter-style */
 
 declare namespace Monarc {
-  import VueI18n from 'vue-i18n';
+  import VueI18n from "vue-i18n";
 
   export interface BrowserWindow {
     addMonarcExtension(srcDirectory: string): string;
@@ -10,9 +10,9 @@ declare namespace Monarc {
   }
 
   export namespace Scheme {
-    // monarc:// scheme
+    // Monarc:// scheme
     export interface MonarcObject extends Object {
-      monarc: Array<{ key: string, value: string }>;
+      Monarc: Array<{ key: string; value: string }>;
       preferences: string[][];
       about: string[][];
     }
@@ -23,7 +23,7 @@ declare namespace Monarc {
       [index: string]: number | undefined;
     }
     export interface Context extends Object {
-      monarc: any;
+      Monarc: any;
     }
   }
 
@@ -38,7 +38,7 @@ declare namespace Monarc {
       [index: string]: BackgroundPageObject | undefined;
     }
     export interface IconInfo {
-      type: 'path' | 'imageData';
+      type: "path" | "imageData";
       url: string;
       tabId: number | undefined;
     }
@@ -62,8 +62,14 @@ declare namespace Monarc {
     export interface GlobalObject extends NodeJS.Global {
       isOnline: boolean;
       __static: string;
-      data: Record<'about' | 'backgroundPages' | 'manifestMap' | 'renderProcessPreferences', any>;
-      func: Record<'createFromPath' | 'join' | 'module', any>;
+      data: Record<
+        | "about"
+        | "backgroundPages"
+        | "manifestMap"
+        | "renderProcessPreferences",
+        any
+      >;
+      func: Record<"createFromPath" | "join" | "module", any>;
       guestData: Scheme.MonarcObject;
       commandPalette: Electron.BrowserWindow;
     }
@@ -121,11 +127,11 @@ declare namespace Monarc {
     export interface MonarcObject {
       systemFavicon: string;
       tabFavicon: string;
-      commandPalette: CommandPaletteConfig;
+      commandPalette: commandPaletteConfig;
     }
     export interface TabConfig {
       dummyTabObject: TabObject;
-      monarcDefault: MonarcObject;
+      MonarcDefault: MonarcObject;
     }
     export interface SearchEngineObject {
       name: string;
@@ -167,7 +173,8 @@ declare namespace Monarc {
     export interface Certificates {
       [index: string]: CertificateObject | undefined;
     }
-    export interface MonarcBrowserWindowProperty extends Electron.BrowserWindowConstructorOptions {
+    export interface MonarcBrowserWindowProperty
+      extends Electron.BrowserWindowConstructorOptions {
       id: number;
       focused?: boolean;
       left: number;
@@ -192,7 +199,7 @@ declare namespace Monarc {
       tabConfig: TabConfig;
       lang: string;
       proxyConfig: Electron.Config;
-      auth: { username: string, password: string };
+      auth: { username: string; password: string };
       downloads: DownloadItem[];
       history: TabHistory[];
       permissions: any;
@@ -285,4 +292,24 @@ declare namespace Monarc {
       end(): void;
     }
   }
+  // Shape of each argument spec
+  export interface ArgSpec {
+    types: string[];
+    optional?: boolean;
+  }
+
+  // Shape of each API method spec
+  export interface ApiSpec {
+    args: Record<string, ArgSpec>;
+  }
+
+  // Namespace → method → spec
+  export interface Specs {
+    [namespace: string]: {
+      [name: string]: ApiSpec;
+    };
+  }
+
+  // Export the specs object
+  export const specs: Specs;
 }
